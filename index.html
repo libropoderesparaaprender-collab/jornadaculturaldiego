@@ -3,300 +3,340 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exposición Pioneros - IES Diego Marín Aguilera</title>
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Pioneros del Genio Burgalés - IES Diego Marín Aguilera</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        body { font-family: 'Inter', sans-serif; }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            scroll-behavior: smooth; 
+        }
+
+        .tab-content { 
+            display: none; 
+        }
+
+        .tab-content.active { 
+            display: block; 
+            animation: fadeIn 0.4s ease-out; 
+        }
+
+        @keyframes fadeIn { 
+            from { opacity: 0; transform: translateY(10px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        /* Estilo para ocultar scrollbar en la nav */
         .scrollbar-hide::-webkit-scrollbar { display: none; }
-        .animate-fade-in { animation: fadeIn 0.5s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Estilo proyector */
+        .projector-glow {
+            box-shadow: 0 0 50px rgba(168, 85, 247, 0.4);
+        }
     </style>
 </head>
-<body class="bg-gray-100">
-    <div id="root"></div>
+<body class="bg-slate-50 min-h-screen p-2 md:p-6 lg:p-10">
 
-    <script type="text/babel">
-        const { useState, useEffect } = React;
+    <div class="max-w-6xl mx-auto bg-white rounded-[40px] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.15)] overflow-hidden border border-slate-200">
         
-        const Icon = ({ name, className }) => {
-            const icons = {
-                plane: <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg>,
-                film: <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 3v18M17 3v18M3 7h4M3 12h4M3 17h4M17 7h4M17 12h4M17 17h4"/></svg>,
-                history: <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>,
-                bulb: <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A5 5 0 0 0 8 8c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5M9 18h6M10 22h4"/></svg>
-            };
-            return icons[name] || null;
-        };
+        <!-- Navegación Superior -->
+        <nav class="flex bg-slate-900 text-white overflow-x-auto scrollbar-hide border-b-4 border-blue-600 sticky top-0 z-50">
+            <button onclick="showTab('inicio')" id="btn-inicio" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-slate-800 transition-all uppercase text-[10px] font-black tracking-widest bg-blue-600">Inicio</button>
+            <button onclick="showTab('vuelo')" id="btn-vuelo" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-slate-800 transition-all uppercase text-[10px] font-black tracking-widest">Pioneros Vuelo</button>
+            <button onclick="showTab('cine')" id="btn-cine" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-slate-800 transition-all uppercase text-[10px] font-black tracking-widest">Pionero Cine</button>
+            <button onclick="showTab('tablas')" id="btn-tablas" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-slate-800 transition-all uppercase text-[10px] font-black tracking-widest">Comparativa</button>
+            <button onclick="showTab('debate')" id="btn-debate" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-emerald-700 transition-all uppercase text-[10px] font-black tracking-widest text-emerald-300">Valores C.I.D.A.</button>
+        </nav>
 
-        const App = () => {
-            const [activeTab, setActiveTab] = useState('inicio');
-            const [frameRate, setFrameRate] = useState(2);
-            const [isPlaying, setIsPlaying] = useState(false);
-            const [currentFrame, setCurrentFrame] = useState(0);
+        <div class="p-6 md:p-12 lg:p-16 min-h-[600px] bg-white relative">
+            
+            <!-- SECCIÓN: INICIO -->
+            <div id="inicio" class="tab-content active space-y-8 text-center">
+                <div class="bg-blue-50 px-6 py-2 rounded-full border border-blue-100 inline-block">
+                    <p class="text-blue-600 font-bold text-[10px] tracking-widest uppercase">Jornadas Culturales "Diego Marín Aguilera"</p>
+                </div>
 
-            useEffect(() => {
-                let interval;
-                if (isPlaying) {
-                    interval = setInterval(() => {
-                        setCurrentFrame((prev) => (prev + 1) % 4);
-                    }, 1000 / frameRate);
-                }
-                return () => clearInterval(interval);
-            }, [isPlaying, frameRate]);
-
-            const renderContent = () => {
-                switch (activeTab) {
-                    case 'inicio':
-                        return (
-                            <div className="space-y-10 text-center animate-fade-in">
-                                <div className="bg-blue-600 text-white px-6 py-2 rounded-full inline-block font-black text-xs uppercase tracking-widest shadow-lg">
-                                    Jornadas Culturales 2024
-                                </div>
-                                <h1 className="text-6xl font-black text-gray-900 leading-none tracking-tighter uppercase">
-                                    Pioneros del <span className="text-blue-600 italic">Genio</span><br/>Burgalés
-                                </h1>
-                                <p className="text-xl text-gray-500 max-w-2xl mx-auto font-medium leading-relaxed">
-                                    Descubre a los hombres que soñaron con el futuro antes que nadie, desde el Castillo de Coruña hasta los cines de París.
-                                </p>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto pt-10">
-                                    <div className="group cursor-pointer" onClick={() => setActiveTab('vuelo')}>
-                                        <div className="relative h-96 overflow-hidden rounded-[3rem] shadow-2xl border-4 border-white">
-                                            <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&w=600" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Vuelo" />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8 text-left text-white">
-                                                <h3 className="text-2xl font-black uppercase">Diego Marín Aguilera</h3>
-                                                <p className="text-sm opacity-80">El primer aviador (1793)</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="group cursor-pointer" onClick={() => setActiveTab('cine')}>
-                                        <div className="relative h-96 overflow-hidden rounded-[3rem] shadow-2xl border-4 border-white">
-                                            <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=600" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Cine" />
-                                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-8 text-left text-white">
-                                                <h3 className="text-2xl font-black uppercase">Mariano Díez Tobar</h3>
-                                                <p className="text-sm opacity-80">El padre del cine (1889)</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                <h1 class="text-4xl md:text-6xl font-black text-slate-900 leading-none uppercase tracking-tighter">
+                    CONQUISTANDO EL <span class="text-blue-600 italic">CIELO</span> <br/> 
+                    Y EL <span class="text-purple-600 italic">CINE</span>
+                </h1>
+                
+                <!-- Galería de Protagonistas -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-12 max-w-4xl mx-auto">
+                    <!-- Diego Marín -->
+                    <div class="group">
+                        <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white ring-1 ring-slate-200 transition-all group-hover:rotate-1">
+                            <img src="diego.jpg" alt="Diego Marín Aguilera" class="w-full h-80 object-cover bg-slate-100" onerror="this.src='https://via.placeholder.com/400x500?text=Diego+Marín'">
+                            <div class="bg-slate-900 text-white py-3 px-4 text-xs font-black uppercase tracking-widest">
+                                Diego Marín Aguilera
                             </div>
-                        );
-
-                    case 'vuelo':
-                        return (
-                            <div className="space-y-12 animate-fade-in">
-                                <h2 className="text-4xl font-black text-blue-900 flex items-center gap-4"><Icon name="plane" className="w-10 h-10" /> EL PASTOR QUE VOLÓ</h2>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    <div className="bg-white p-10 rounded-[3rem] shadow-xl border-l-8 border-blue-500">
-                                        <p className="text-gray-700 leading-loose text-lg">
-                                            <strong>Diego Marín</strong> no era solo un pastor; era un observador nato. Durante 6 años cazó águilas para estudiar cómo sus alas soportaban el peso. 
-                                            Construyó un aparato de <strong>hierro, tela y plumas</strong> con la ayuda de un herrero local. 
-                                            <br/><br/>
-                                            El 11 de mayo de 1793, desde el castillo de Coruña del Conde, planeó 360 metros. ¡Fue un hito mundial ignorado por la historia oficial durante décadas!
-                                        </p>
-                                    </div>
-                                    <div className="space-y-6">
-                                        <div className="bg-blue-900 text-white p-8 rounded-[2.5rem]">
-                                            <h4 className="font-black text-xl mb-2">VALORES: PERSISTENCIA</h4>
-                                            <p className="opacity-80">Diego fracasó muchas veces antes de lanzarse. Su lección: el genio nace del error corregido.</p>
-                                        </div>
-                                        <div className="bg-gray-100 p-8 rounded-[2.5rem] border-2 border-dashed border-gray-400">
-                                            <h4 className="font-black text-gray-800 mb-2 italic">¿SABÍAS QUÉ?</h4>
-                                            <p className="text-sm text-gray-600 leading-relaxed">Su vuelo terminó porque se rompió un perno de hierro. No fue falta de aerodinámica, fue un fallo mecánico que hoy cualquier ingeniero entendería.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        );
-
-                    case 'cine':
-                        return (
-                            <div className="space-y-12 animate-fade-in">
-                                <h2 className="text-4xl font-black text-purple-900 flex items-center gap-4"><Icon name="film" className="w-10 h-10" /> MARIANO: EL GENIO DE TARDAJOS</h2>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                                    <div className="md:col-span-2 space-y-6">
-                                        <div className="bg-white p-10 rounded-[3rem] shadow-xl border-t-8 border-purple-500">
-                                            <h3 className="text-2xl font-black text-purple-700 mb-4">MÁS ALLÁ DE PARÍS</h3>
-                                            <p className="text-gray-700 leading-relaxed text-lg">
-                                                En <strong>1889</strong>, Mariano Díez Tobar explicó en una charla pública cómo proyectar imágenes en movimiento. Resolvió el problema del <strong>paso intermitente</strong> (que la imagen se pare una milésima para que el ojo la vea). 
-                                                <br/><br/>
-                                                Era un hombre de una inteligencia abrumadora que caminaba 10 km diarios para ir a clase de niño. Fue profesor de ciencias y un inventor generoso que nunca buscó el dinero.
-                                            </p>
-                                        </div>
-                                        <div className="bg-purple-50 p-8 rounded-[2.5rem] border-l-4 border-purple-500 italic font-medium">
-                                            "A los hermanos Lumière les dio la solución técnica. No patentó nada porque creía que el conocimiento debía ser libre para todos."
-                                        </div>
-                                    </div>
-                                    <div className="bg-gray-900 text-white p-10 rounded-[3rem] flex flex-col justify-center text-center">
-                                        <h4 className="font-black text-2xl text-purple-400 mb-4 uppercase">Generosidad</h4>
-                                        <p className="opacity-70 text-sm leading-loose">
-                                            Hoy en día, su nombre es reivindicado como el verdadero autor de la base técnica del cine. Un hombre que antepuso la ciencia a la fama.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        );
-
-                    case 'historia':
-                        return (
-                            <div className="space-y-12 animate-fade-in">
-                                <h2 className="text-4xl font-black text-center text-gray-900 uppercase tracking-tighter">CRONOLOGÍA DE LA VERDAD</h2>
-                                
-                                {/* TABLA AVIACIÓN */}
-                                <div className="space-y-4">
-                                    <h3 className="text-2xl font-black text-blue-600 flex items-center gap-2"><Icon name="plane" className="w-6 h-6"/> AVIACIÓN: DIEGO vs WRIGHT</h3>
-                                    <div className="overflow-hidden rounded-3xl border border-gray-200 shadow-xl">
-                                        <table className="w-full text-left">
-                                            <thead className="bg-blue-600 text-white font-black uppercase text-xs">
-                                                <tr>
-                                                    <th className="p-4">FECHA</th>
-                                                    <th className="p-4">PROTAGONISTA</th>
-                                                    <th className="p-4">HITOS / LOGROS</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody className="bg-white text-sm">
-                                                <tr className="border-b bg-blue-50 font-bold">
-                                                    <td className="p-4">11 Mayo 1793</td>
-                                                    <td className="p-4">Diego Marín Aguilera</td>
-                                                    <td className="p-4">Primer vuelo planeado documentado (360m). Precursor de la aerodinámica.</td>
-                                                </tr>
-                                                <tr className="border-b">
-                                                    <td className="p-4">1891-1896</td>
-                                                    <td className="p-4">Otto Lilienthal</td>
-                                                    <td className="p-4">Realiza planeos inspirados en la misma lógica que Diego 100 años antes.</td>
-                                                </tr>
-                                                <tr className="border-b bg-gray-50">
-                                                    <td className="p-4">17 Diciembre 1903</td>
-                                                    <td className="p-4">Hnos. Wright</td>
-                                                    <td className="p-4">Primer vuelo motorizado controlado. Recorren 260m (menos distancia que Diego en su primer salto).</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-
-                                {/* TABLA CINE */}
-                                <div className="space-y-4 pt-8">
-                                    <h3 className="text-2xl font-black text-purple-600 flex items-center gap-2"><Icon name="film" className="w-6 h-6"/> CINE: MARIANO vs LUMIÈRE</h3>
-                                    <div className="overflow-hidden rounded-3xl border border-gray-200 shadow-xl">
-                                        <table className="w-full text-left">
-                                            <thead className="bg-purple-600 text-white font-black uppercase text-xs">
-                                                <tr>
-                                                    <th className="p-4">FECHA</th>
-                                                    <th className="p-4">PROTAGONISTA</th>
-                                                    <th className="p-4">HITOS / LOGROS</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody className="bg-white text-sm">
-                                                <tr className="border-b bg-purple-50 font-bold">
-                                                    <td className="p-4">1889</td>
-                                                    <td className="p-4">Mariano Díez Tobar</td>
-                                                    <td className="p-4">Conferencia pública detallando la solución al movimiento del cinematógrafo.</td>
-                                                </tr>
-                                                <tr className="border-b">
-                                                    <td className="p-4">1892</td>
-                                                    <td className="p-4">Léon Bouly</td>
-                                                    <td className="p-4">Patenta el término "Cinematógrafo" pero no logra que funcione bien.</td>
-                                                </tr>
-                                                <tr className="border-b bg-gray-50">
-                                                    <td className="p-4">28 Diciembre 1895</td>
-                                                    <td className="p-4">Hnos. Lumière</td>
-                                                    <td className="p-4">Primera proyección comercial en París basada en la solución teórica de Mariano.</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        );
-
-                    case 'quiz':
-                        return (
-                            <div className="space-y-12 animate-fade-in max-w-4xl mx-auto text-center">
-                                <div className="bg-orange-600 text-white p-12 rounded-[3.5rem] shadow-2xl">
-                                    <h3 className="text-3xl font-black mb-6 uppercase tracking-widest italic">NEMOTÉCNICO PARA TU VIDA</h3>
-                                    <div className="text-7xl font-black tracking-[0.2em] mb-8 drop-shadow-lg">C.I.D.A.</div>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left font-black text-sm max-w-md mx-auto">
-                                        <div className="bg-white/10 p-4 rounded-xl border border-white/20">C - CUIDO LO COMÚN</div>
-                                        <div className="bg-white/10 p-4 rounded-xl border border-white/20">I - INTELECTO ACTIVO</div>
-                                        <div className="bg-white/10 p-4 rounded-xl border border-white/20">D - DOY LO MEJOR</div>
-                                        <div className="bg-white/10 p-4 rounded-xl border border-white/20">A - APRENDO SIEMPRE</div>
-                                    </div>
-                                </div>
-
-                                <div className="grid grid-cols-1 gap-8 text-left">
-                                    {[
-                                        {
-                                            q: "¿Pasaría hoy lo mismo?",
-                                            d: "A Diego le quemaron las alas sus vecinos. ¿Cómo tratamos hoy al compañero que se esfuerza mucho o tiene ideas raras? ¿Le quemamos sus ganas o le apoyamos?"
-                                        },
-                                        {
-                                            q: "¿Apoyamos a nuestros inventores?",
-                                            d: "Mariano dio su idea gratis para que el mundo progresara. ¿Qué estamos haciendo hoy nosotros por la ciencia en nuestro propio país?"
-                                        },
-                                        {
-                                            q: "Tú como alumno: ¿Te esfuerzas para ser inventor?",
-                                            d: "Aportar a la sociedad no es solo hacer máquinas. Es estudiar para poder ayudar mañana a los demás. ¿Cuál es tu 'invento' hoy?"
-                                        },
-                                        {
-                                            q: "¿Permito que otros estudien?",
-                                            d: "Mariano caminaba 10 km bajo la nieve para aprender. ¿Valoras tú tu clase? ¿Molestas a los demás o respetas su derecho a ser genios como Mariano?"
-                                        }
-                                    ].map((item, idx) => (
-                                        <div key={idx} className="bg-white p-10 rounded-[3rem] border-2 border-orange-100 shadow-md hover:border-orange-500 transition-all">
-                                            <h4 className="text-xl font-black text-gray-900 mb-4 uppercase">{item.q}</h4>
-                                            <p className="text-gray-600 leading-relaxed font-medium">{item.d}</p>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        );
-                    default: return null;
-                }
-            };
-
-            return (
-                <div className="min-h-screen p-4 md:p-10 bg-gray-50">
-                    <div className="max-w-6xl mx-auto bg-white rounded-[4rem] shadow-2xl overflow-hidden border border-gray-200">
-                        <nav className="flex bg-gray-900 text-white overflow-x-auto scrollbar-hide">
-                            {[
-                                {id: 'inicio', label: 'Inicio'},
-                                {id: 'vuelo', label: 'Vuelo'},
-                                {id: 'cine', label: 'Cine'},
-                                {id: 'historia', label: 'Tablas/Fechas'},
-                                {id: 'quiz', label: 'Reflexión'}
-                            ].map(tab => (
-                                <button 
-                                    key={tab.id} 
-                                    onClick={() => setActiveTab(tab.id)} 
-                                    className={`px-8 py-8 flex-1 whitespace-nowrap hover:bg-gray-800 transition-all uppercase text-[10px] md:text-xs font-black tracking-widest ${activeTab === tab.id ? 'bg-blue-600' : 'opacity-50'}`}
-                                >
-                                    {tab.label}
-                                </button>
-                            ))}
-                        </nav>
-                        <div className="p-8 md:p-20 min-h-[700px]">
-                            {renderContent()}
                         </div>
-                        <footer className="bg-gray-900 text-white p-12 flex flex-col md:flex-row justify-between items-center text-center md:text-left">
-                            <div className="space-y-2">
-                                <p className="text-xl font-black uppercase tracking-tighter">IES Diego Marín Aguilera</p>
-                                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">Tecnología · Robótica · Humanidades</p>
+                        <p class="mt-4 text-sm font-bold text-blue-600 uppercase italic tracking-wider">El Primer Aviador (1793)</p>
+                    </div>
+
+                    <!-- Mariano Díez -->
+                    <div class="group">
+                        <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white ring-1 ring-slate-200 transition-all group-hover:-rotate-1">
+                            <img src="mariano.jpg" alt="Mariano Díez Tobar" class="w-full h-80 object-cover bg-slate-100" onerror="this.src='https://via.placeholder.com/400x500?text=Mariano+Díez'">
+                            <div class="bg-slate-900 text-white py-3 px-4 text-xs font-black uppercase tracking-widest">
+                                Mariano Díez Tobar
                             </div>
-                            <div className="mt-8 md:mt-0 text-xs text-gray-500 max-w-xs leading-relaxed uppercase font-black">
-                                Aprendiendo del pasado para inventar el futuro. <br/>Burgos 2024.
-                            </div>
-                        </footer>
+                        </div>
+                        <p class="mt-4 text-sm font-bold text-purple-600 uppercase italic tracking-wider">El Genio del Cine (1889)</p>
                     </div>
                 </div>
-            );
-        };
 
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
+                <div class="max-w-2xl mx-auto space-y-4">
+                    <p class="text-xl text-slate-500 font-medium leading-relaxed">
+                        Una exposición sobre el valor del <strong>esfuerzo</strong>, el <strong>trabajo</strong> y el respeto a nuestro entorno a través de dos genios burgaleses.
+                    </p>
+                    <button onclick="showTab('vuelo')" class="mt-4 px-10 py-4 bg-slate-900 text-white rounded-full font-black hover:bg-blue-600 transition-all transform hover:scale-105 uppercase tracking-widest text-xs shadow-xl">
+                        Explorar Exposición
+                    </button>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: VUELO -->
+            <div id="vuelo" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 border-b-4 border-blue-600 pb-4">
+                    <span class="text-4xl">🦅</span>
+                    <h2 class="text-3xl font-black text-slate-900 uppercase italic">El Sueño de Volar</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-3xl shadow-xl border-l-8 border-yellow-500">
+                        <h3 class="font-black text-2xl mb-4 text-yellow-700 uppercase">Diego Marín (1793)</h3>
+                        <p class="text-slate-700 leading-relaxed font-medium mb-4">
+                            No fue casualidad. Dedicó <strong>6 años de observación</strong> a las aves rapaces. Analizó cómo movían sus alas para planear.
+                        </p>
+                        <div class="bg-yellow-50 p-4 rounded-xl border border-yellow-100 text-sm italic font-bold text-yellow-800">
+                            "Construyó su propio aparato con hierro y plumas de águila. Logró volar 360 metros."
+                        </div>
+                    </div>
+                    <div class="bg-blue-900 text-white p-8 rounded-3xl flex flex-col justify-center shadow-lg">
+                        <h4 class="font-black text-blue-400 text-xs uppercase tracking-widest mb-2">Lección de Vida</h4>
+                        <p class="text-lg font-medium italic opacity-90 leading-relaxed">
+                            "El genio es 1% inspiración y 99% transpiración. Diego no se rindió ante las burlas; trabajó hasta que sus pies dejaron de tocar el suelo."
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: CINE -->
+            <div id="cine" class="tab-content space-y-8">
+                <div class="flex items-center gap-4 border-b-4 border-purple-600 pb-4">
+                    <span class="text-4xl">🎞️</span>
+                    <h2 class="text-3xl font-black text-slate-900 uppercase italic">La Magia del Tiempo</h2>
+                </div>
+                
+                <div class="bg-white p-10 rounded-3xl shadow-2xl border border-slate-100">
+                    <h3 class="text-2xl font-black text-purple-700 mb-4 uppercase tracking-tighter">Mariano Díez Tobar: Compartir es progresar</h3>
+                    <p class="text-slate-700 leading-relaxed text-lg mb-6">
+                        En 1889, seis años antes que los franceses, Mariano ya explicaba cómo funcionaría el cine. Su gran invento fue la <strong>solución de intermitencia</strong>.
+                    </p>
+                    
+                    <!-- Simulador de Proyector -->
+                    <div class="bg-slate-900 p-8 rounded-3xl text-center space-y-6">
+                        <div id="projector-screen" class="h-48 bg-white rounded-xl flex items-center justify-center text-8xl transition-all duration-100">
+                            📽️
+                        </div>
+                        <div class="flex flex-col items-center gap-4">
+                            <input type="range" id="fps-range" min="1" max="24" value="2" class="w-64 accent-purple-500">
+                            <span id="fps-value" class="text-purple-400 font-mono text-xl font-bold">2 FPS</span>
+                            <button onclick="toggleProjector()" id="proj-btn" class="bg-purple-600 px-8 py-3 rounded-full text-white font-black hover:bg-purple-500 transition-all uppercase text-xs">Iniciar Proyector</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: TABLAS COMPARATIVAS -->
+            <div id="tablas" class="tab-content space-y-12">
+                <div class="text-center">
+                    <h2 class="text-3xl font-black text-slate-900 uppercase">Cronología y Justicia Histórica</h2>
+                    <p class="text-slate-500 font-bold uppercase text-[10px] tracking-widest mt-2">¿Quién fue primero?</p>
+                </div>
+
+                <!-- Tabla Aviación -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-black text-blue-600 flex items-center gap-2 italic uppercase">📍 El Cielo: Diego vs Wright</h3>
+                    <div class="overflow-x-auto rounded-3xl border-2 border-slate-100 shadow-xl">
+                        <table class="w-full text-left border-collapse">
+                            <thead class="bg-blue-600 text-white font-black uppercase text-[10px] tracking-widest">
+                                <tr>
+                                    <th class="p-6">Año</th>
+                                    <th class="p-6">Nombre</th>
+                                    <th class="p-6">Hazaña / Logro</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm font-semibold">
+                                <tr class="bg-blue-50/50 border-b border-blue-100 font-black text-blue-900">
+                                    <td class="p-6">1793</td>
+                                    <td class="p-6">Diego Marín Aguilera</td>
+                                    <td class="p-6">Vuelo de 360m en Coruña del Conde (Burgos).</td>
+                                </tr>
+                                <tr class="border-b border-slate-100">
+                                    <td class="p-6 text-slate-400">1891</td>
+                                    <td class="p-6 text-slate-400">Otto Lilienthal</td>
+                                    <td class="p-6 text-slate-400">Vuelos planeados en Alemania.</td>
+                                </tr>
+                                <tr class="bg-slate-50">
+                                    <td class="p-6">1903</td>
+                                    <td class="p-6 font-bold">Hermanos Wright</td>
+                                    <td class="p-6 italic">Primer vuelo motorizado (260m).</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Tabla Cine -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-black text-purple-600 flex items-center gap-2 italic uppercase">📍 El Tiempo: Mariano vs Lumière</h3>
+                    <div class="overflow-x-auto rounded-3xl border-2 border-slate-100 shadow-xl">
+                        <table class="w-full text-left border-collapse">
+                            <thead class="bg-purple-600 text-white font-black uppercase text-[10px] tracking-widest">
+                                <tr>
+                                    <th class="p-6">Año</th>
+                                    <th class="p-6">Nombre</th>
+                                    <th class="p-6">Aportación Fundamental</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm font-semibold">
+                                <tr class="bg-purple-50/50 border-b border-purple-100 font-black text-purple-900">
+                                    <td class="p-6">1889</td>
+                                    <td class="p-6">Mariano Díez Tobar</td>
+                                    <td class="p-6">Explicó la solución al movimiento en conferencia pública.</td>
+                                </tr>
+                                <tr class="border-b border-slate-100">
+                                    <td class="p-6 text-slate-400">1892</td>
+                                    <td class="p-6 text-slate-400">Léon Bouly</td>
+                                    <td class="p-6 text-slate-400">Inventó el término "Cinematógrafo".</td>
+                                </tr>
+                                <tr class="bg-slate-50">
+                                    <td class="p-6">1895</td>
+                                    <td class="p-6 font-bold">Hermanos Lumière</td>
+                                    <td class="p-6 italic">Primera proyección comercial basada en ideas previas.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECCIÓN: DEBATE Y VALORES (C.I.D.A.) -->
+            <div id="debate" class="tab-content space-y-10">
+                <div class="bg-emerald-600 text-white p-12 rounded-[3rem] shadow-2xl text-center relative overflow-hidden">
+                    <div class="absolute -top-10 -right-10 text-9xl opacity-10">🛡️</div>
+                    <h3 class="text-3xl font-black mb-8 uppercase tracking-widest italic">NUESTRO COMPROMISO</h3>
+                    
+                    <div class="text-7xl md:text-8xl font-black tracking-[0.2em] mb-10 text-emerald-300">C.I.D.A.</div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left font-black text-[10px] max-w-lg mx-auto uppercase tracking-[0.15em]">
+                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
+                            <span class="text-emerald-300 mr-2 text-lg">C</span> Cuido lo común (el Centro)
+                        </div>
+                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
+                            <span class="text-emerald-300 mr-2 text-lg">I</span> Intelecto activo y despierto
+                        </div>
+                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
+                            <span class="text-emerald-300 mr-2 text-lg">D</span> Doy lo mejor cada día
+                        </div>
+                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
+                            <span class="text-emerald-300 mr-2 text-lg">A</span> Aprendo de mis errores
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="p-8 bg-slate-900 text-white rounded-3xl">
+                        <h4 class="font-black uppercase text-xs text-emerald-400 mb-4 tracking-widest">Aviso para 1º de ESO</h4>
+                        <p class="text-sm font-medium leading-relaxed italic opacity-80">
+                            "Diego y Mariano no tenían iPad ni conexión de fibra. Tenían curiosidad e insistencia. Los recursos que tienes en tu clase son para que tú también cambies el mundo algún día. ¡Respétalos!"
+                        </p>
+                    </div>
+                    <div class="p-8 bg-slate-100 rounded-3xl border-2 border-slate-200">
+                        <h4 class="font-black uppercase text-xs text-slate-500 mb-4 tracking-widest">Reto del día</h4>
+                        <p class="text-sm font-bold text-slate-800 uppercase italic">
+                            ¿Cuál de estos dos genios te inspira más para esforzarte hoy en clase?
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-slate-950 text-white p-10 flex flex-col md:flex-row justify-between items-center px-16 border-t-4 border-slate-800">
+            <div class="text-left">
+                <p class="text-xl font-black uppercase tracking-tighter italic">IES Diego Marín Aguilera</p>
+                <p class="text-[9px] text-slate-500 font-black uppercase tracking-[0.3em]">Burgos · Control y Robótica</p>
+            </div>
+            <div class="mt-6 md:mt-0 text-[10px] text-slate-600 font-black uppercase tracking-widest text-right">
+                Jornadas Culturales 2026
+            </div>
+        </footer>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script>
+        // Navegación entre pestañas
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('bg-blue-600'));
+            
+            document.getElementById(tabId).classList.add('active');
+            document.getElementById('btn-' + tabId).classList.add('bg-blue-600');
+            
+            // Scroll al inicio del contenedor
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Lógica del Proyector
+        let isPlaying = false;
+        let interval;
+        const screen = document.getElementById('projector-screen');
+        const range = document.getElementById('fps-range');
+        const fpsVal = document.getElementById('fps-value');
+        const btn = document.getElementById('proj-btn');
+        let frame = 0;
+
+        range.addEventListener('input', () => {
+            fpsVal.innerText = range.value + " FPS";
+            if(isPlaying) {
+                stopProj();
+                startProj();
+            }
+        });
+
+        function startProj() {
+            interval = setInterval(() => {
+                frame++;
+                screen.innerText = (frame % 2 === 0) ? "🦅" : "🦅";
+                screen.classList.toggle('projector-glow');
+                screen.style.opacity = (frame % 2 === 0) ? "0.9" : "1";
+            }, 1000 / range.value);
+        }
+
+        function stopProj() {
+            clearInterval(interval);
+        }
+
+        function toggleProjector() {
+            isPlaying = !isPlaying;
+            if(isPlaying) {
+                startProj();
+                btn.innerText = "Detener Proyector";
+                btn.classList.replace('bg-purple-600', 'bg-red-600');
+            } else {
+                stopProj();
+                screen.innerText = "📽️";
+                screen.classList.remove('projector-glow');
+                btn.innerText = "Iniciar Proyector";
+                btn.classList.replace('bg-red-600', 'bg-purple-600');
+            }
+        }
     </script>
 </body>
 </html>
