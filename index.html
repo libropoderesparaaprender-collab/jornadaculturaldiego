@@ -27,11 +27,9 @@
             to { opacity: 1; transform: translateY(0); } 
         }
 
-        /* Estilo para ocultar scrollbar en la nav */
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* Estilo proyector */
         .projector-glow {
             box-shadow: 0 0 50px rgba(168, 85, 247, 0.4);
         }
@@ -41,19 +39,18 @@
 
     <div class="max-w-6xl mx-auto bg-white rounded-[40px] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.15)] overflow-hidden border border-slate-200">
         
-        <!-- Navegación Superior -->
         <nav class="flex bg-slate-900 text-white overflow-x-auto scrollbar-hide border-b-4 border-blue-600 sticky top-0 z-50">
             <button onclick="showTab('inicio')" id="btn-inicio" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-slate-800 transition-all uppercase text-[10px] font-black tracking-widest bg-blue-600">Inicio</button>
             <button onclick="showTab('vuelo')" id="btn-vuelo" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-slate-800 transition-all uppercase text-[10px] font-black tracking-widest">Pioneros Vuelo</button>
             <button onclick="showTab('cine')" id="btn-cine" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-slate-800 transition-all uppercase text-[10px] font-black tracking-widest">Pionero Cine</button>
             <button onclick="showTab('tablas')" id="btn-tablas" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-slate-800 transition-all uppercase text-[10px] font-black tracking-widest">Comparativa</button>
-            <button onclick="showTab('debate')" id="btn-debate" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-emerald-700 transition-all uppercase text-[10px] font-black tracking-widest text-emerald-300">Valores C.I.D.A.</button>
+            <button onclick="showTab('debate')" id="btn-debate" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-emerald-700 transition-all uppercase text-[10px] font-black tracking-widest text-emerald-300">Valores D.I.E.G.O.</button>
+            <button onclick="showTab('mariano-val')" id="btn-mariano-val" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-purple-800 transition-all uppercase text-[10px] font-black tracking-widest text-purple-300">Valores M.A.R.I.A.N.O.</button>
         </nav>
 
         <div class="p-6 md:p-12 lg:p-16 min-h-[600px] bg-white relative">
             
-            <!-- SECCIÓN: INICIO -->
-            <div id="inicio" class="tab-content active space-y-8 text-center">
+                <div id="inicio" class="tab-content active space-y-8 text-center">
                 <div class="bg-blue-50 px-6 py-2 rounded-full border border-blue-100 inline-block">
                     <p class="text-blue-600 font-bold text-[10px] tracking-widest uppercase">Jornadas Culturales "Diego Marín Aguilera".Organiza: Alumnos Asignatura  " Control y Robótica" ,Asignatura "Tecnología y Digitalización" y Asignatura "Programación"</p>
                 </div>
@@ -63,14 +60,13 @@
                     <p class="text-blue-600 font-bold text-[10px] tracking-widest uppercase">Día 19 de Febrero en el salón de Actos  del Centro .Horario--> 13:30 h a 14:30</p>
                 </div>
 
+
                 <h1 class="text-4xl md:text-6xl font-black text-slate-900 leading-none uppercase tracking-tighter">
                     CONQUISTANDO EL <span class="text-blue-600 italic">CIELO</span> <br/> 
                     Y EL <span class="text-purple-600 italic">CINE</span>
-                </h
+                </h1>
                 
-                <!-- Galería de Protagonistas -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-12 max-w-4xl mx-auto">
-                    <!-- Diego Marín -->
                     <div class="group">
                         <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white ring-1 ring-slate-200 transition-all group-hover:rotate-1">
                             <img src="diego.jpg" alt="Diego Marín Aguilera" class="w-full h-80 object-cover bg-slate-100" onerror="this.src='https://via.placeholder.com/400x500?text=Diego+Marín'">
@@ -81,7 +77,6 @@
                         <p class="mt-4 text-sm font-bold text-blue-600 uppercase italic tracking-wider">El Primer Aviador (1793)</p>
                     </div>
 
-                    <!-- Mariano Díez -->
                     <div class="group">
                         <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white ring-1 ring-slate-200 transition-all group-hover:-rotate-1">
                             <img src="mariano.jpg" alt="Mariano Díez Tobar" class="w-full h-80 object-cover bg-slate-100" onerror="this.src='https://via.placeholder.com/400x500?text=Mariano+Díez'">
@@ -103,7 +98,6 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN: VUELO -->
             <div id="vuelo" class="tab-content space-y-8">
                 <div class="flex items-center gap-4 border-b-4 border-blue-600 pb-4">
                     <span class="text-4xl">🦅</span>
@@ -129,7 +123,6 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN: CINE -->
             <div id="cine" class="tab-content space-y-8">
                 <div class="flex items-center gap-4 border-b-4 border-purple-600 pb-4">
                     <span class="text-4xl">🎞️</span>
@@ -142,7 +135,6 @@
                         En 1889, seis años antes que los franceses, Mariano ya explicaba cómo funcionaría el cine. Su gran invento fue la <strong>solución de intermitencia</strong>.
                     </p>
                     
-                    <!-- Simulador de Proyector -->
                     <div class="bg-slate-900 p-8 rounded-3xl text-center space-y-6">
                         <div id="projector-screen" class="h-48 bg-white rounded-xl flex items-center justify-center text-8xl transition-all duration-100">
                             📽️
@@ -156,14 +148,12 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN: TABLAS COMPARATIVAS -->
             <div id="tablas" class="tab-content space-y-12">
                 <div class="text-center">
                     <h2 class="text-3xl font-black text-slate-900 uppercase">Cronología y Justicia Histórica</h2>
                     <p class="text-slate-500 font-bold uppercase text-[10px] tracking-widest mt-2">¿Quién fue primero?</p>
                 </div>
 
-                <!-- Tabla Aviación -->
                 <div class="space-y-4">
                     <h3 class="text-xl font-black text-blue-600 flex items-center gap-2 italic uppercase">📍 El Cielo: Diego vs Wright</h3>
                     <div class="overflow-x-auto rounded-3xl border-2 border-slate-100 shadow-xl">
@@ -196,7 +186,6 @@
                     </div>
                 </div>
 
-                <!-- Tabla Cine -->
                 <div class="space-y-4">
                     <h3 class="text-xl font-black text-purple-600 flex items-center gap-2 italic uppercase">📍 El Tiempo: Mariano vs Lumière</h3>
                     <div class="overflow-x-auto rounded-3xl border-2 border-slate-100 shadow-xl">
@@ -230,49 +219,71 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN: DEBATE Y VALORES (C.I.D.A.) -->
             <div id="debate" class="tab-content space-y-10">
                 <div class="bg-emerald-600 text-white p-12 rounded-[3rem] shadow-2xl text-center relative overflow-hidden">
                     <div class="absolute -top-10 -right-10 text-9xl opacity-10">🛡️</div>
                     <h3 class="text-3xl font-black mb-8 uppercase tracking-widest italic">NUESTRO COMPROMISO</h3>
-                    
-                    <div class="text-7xl md:text-8xl font-black tracking-[0.2em] mb-10 text-emerald-300">C.I.D.A.</div>
-                    
+                    <div class="text-7xl md:text-8xl font-black tracking-[0.2em] mb-10 text-emerald-300">D.I.E.G.O.</div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left font-black text-[10px] max-w-lg mx-auto uppercase tracking-[0.15em]">
                         <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
-                            <span class="text-emerald-300 mr-2 text-lg">C</span> Cuido lo común (el Centro)
+                            <span class="text-emerald-300 mr-2 text-lg">D</span> DISCIPLINA (el Centro)
                         </div>
                         <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
-                            <span class="text-emerald-300 mr-2 text-lg">I</span> Intelecto activo y despierto
+                            <span class="text-emerald-300 mr-2 text-lg">I</span> INGENIO, Intelecto activo y despierto
                         </div>
                         <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
-                            <span class="text-emerald-300 mr-2 text-lg">D</span> Doy lo mejor cada día
+                            <span class="text-emerald-300 mr-2 text-lg">E</span> ESFUERZO 
                         </div>
                         <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
-                            <span class="text-emerald-300 mr-2 text-lg">A</span> Aprendo de mis errores
+                            <span class="text-emerald-300 mr-2 text-lg">G</span> GRATITUD
+                        </div>
+                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
+                            <span class="text-emerald-300 mr-2 text-lg">O</span> ORDEN
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="mariano-val" class="tab-content space-y-10">
+                <div class="bg-purple-700 text-white p-12 rounded-[3rem] shadow-2xl text-center relative overflow-hidden">
+                    <div class="absolute -top-10 -right-10 text-9xl opacity-10">💡</div>
+                    <h3 class="text-3xl font-black mb-8 uppercase tracking-widest italic">EL LEGADO DEL INVENTOR</h3>
+                    <div class="text-7xl md:text-8xl font-black tracking-[0.1em] mb-10 text-purple-300">MARIANO</div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left font-black text-[10px] max-w-2xl mx-auto uppercase tracking-[0.1em]">
+                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
+                            <span class="text-purple-300 mr-2 text-lg">M</span> <strong>MOTIVACIÓN:</strong> El motor para investigar y crear.
+                        </div>
+                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
+                            <span class="text-purple-300 mr-2 text-lg">A</span> <strong>AUTODIDACTA:</strong> Capacidad de aprender por uno mismo.
+                        </div>
+                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
+                            <span class="text-purple-300 mr-2 text-lg">R</span> <strong>RESPETO:</strong> Valorar las ideas y el entorno.
+                        </div>
+                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
+                            <span class="text-purple-300 mr-2 text-lg">I</span> <strong>INGENIO:</strong> Creatividad para resolver problemas.
+                        </div>
+                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
+                            <span class="text-purple-300 mr-2 text-lg">A</span> <strong>AMBICIÓN (Sana):</strong> Deseo de superarse cada día.
+                        </div>
+                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
+                            <span class="text-purple-300 mr-2 text-lg">N</span> <strong>NOBLEZA:</strong> Compartir el conocimiento.
+                        </div>
+                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all md:col-span-2">
+                            <span class="text-purple-300 mr-2 text-lg">O</span> <strong>OBSERVACIÓN:</strong> Mirar el mundo para entenderlo.
                         </div>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="p-8 bg-slate-900 text-white rounded-3xl">
-                        <h4 class="font-black uppercase text-xs text-emerald-400 mb-4 tracking-widest">Aviso para 1º de ESO</h4>
-                        <p class="text-sm font-medium leading-relaxed italic opacity-80">
-                            "Diego y Mariano no tenían iPad ni conexión de fibra. Tenían curiosidad e insistencia. Los recursos que tienes en tu clase son para que tú también cambies el mundo algún día. ¡Respétalos!"
-                        </p>
-                    </div>
-                    <div class="p-8 bg-slate-100 rounded-3xl border-2 border-slate-200">
-                        <h4 class="font-black uppercase text-xs text-slate-500 mb-4 tracking-widest">Reto del día</h4>
-                        <p class="text-sm font-bold text-slate-800 uppercase italic">
-                            ¿Cuál de estos dos genios te inspira más para esforzarte hoy en clase?
-                        </p>
-                    </div>
+                <div class="p-8 bg-purple-50 rounded-3xl border-2 border-purple-100 text-center">
+                    <p class="text-purple-900 font-bold italic">
+                        "Mariano Díez Tobar no solo inventó máquinas, inventó formas de ver el futuro."
+                    </p>
                 </div>
             </div>
 
         </div>
 
-        <!-- Footer -->
         <footer class="bg-slate-950 text-white p-10 flex flex-col md:flex-row justify-between items-center px-16 border-t-4 border-slate-800">
             <div class="text-left">
                 <p class="text-xl font-black uppercase tracking-tighter italic">IES Diego Marín Aguilera</p>
@@ -284,9 +295,7 @@
         </footer>
     </div>
 
-    <!-- SCRIPTS -->
     <script>
-        // Navegación entre pestañas
         function showTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('bg-blue-600'));
@@ -294,11 +303,9 @@
             document.getElementById(tabId).classList.add('active');
             document.getElementById('btn-' + tabId).classList.add('bg-blue-600');
             
-            // Scroll al inicio del contenedor
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Lógica del Proyector
         let isPlaying = false;
         let interval;
         const screen = document.getElementById('projector-screen');
