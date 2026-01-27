@@ -7,32 +7,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        
-        body { 
-            font-family: 'Inter', sans-serif; 
-            scroll-behavior: smooth; 
-        }
-
-        .tab-content { 
-            display: none; 
-        }
-
-        .tab-content.active { 
-            display: block; 
-            animation: fadeIn 0.4s ease-out; 
-        }
-
-        @keyframes fadeIn { 
-            from { opacity: 0; transform: translateY(10px); } 
-            to { opacity: 1; transform: translateY(0); } 
-        }
-
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
-
-        .projector-glow {
-            box-shadow: 0 0 50px rgba(168, 85, 247, 0.4);
-        }
+        .projector-glow { box-shadow: 0 0 50px rgba(168, 85, 247, 0.4); }
     </style>
 </head>
 <body class="bg-slate-50 min-h-screen p-2 md:p-6 lg:p-10">
@@ -46,6 +27,7 @@
             <button onclick="showTab('tablas')" id="btn-tablas" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-slate-800 transition-all uppercase text-[10px] font-black tracking-widest">Comparativa</button>
             <button onclick="showTab('debate')" id="btn-debate" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-emerald-700 transition-all uppercase text-[10px] font-black tracking-widest text-emerald-300">Valores D.I.E.G.O.</button>
             <button onclick="showTab('mariano-val')" id="btn-mariano-val" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-purple-800 transition-all uppercase text-[10px] font-black tracking-widest text-purple-300">Valores M.A.R.I.A.N.O.</button>
+            <button onclick="showTab('reflexion')" id="btn-reflexion" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-slate-800 transition-all uppercase text-[10px] font-black tracking-widest text-amber-400">Reflexión</button>
         </nav>
 
         <div class="p-6 md:p-12 lg:p-16 min-h-[600px] bg-white relative">
@@ -54,42 +36,25 @@
                 <div class="bg-blue-50 px-6 py-2 rounded-full border border-blue-100 inline-block">
                     <p class="text-blue-600 font-bold text-[10px] tracking-widest uppercase">Jornadas Culturales "Diego Marín Aguilera"</p>
                 </div>
-
                 <h1 class="text-4xl md:text-6xl font-black text-slate-900 leading-none uppercase tracking-tighter">
                     CONQUISTANDO EL <span class="text-blue-600 italic">CIELO</span> <br/> 
                     Y EL <span class="text-purple-600 italic">CINE</span>
                 </h1>
-                
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-12 max-w-4xl mx-auto">
                     <div class="group">
-                        <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white ring-1 ring-slate-200 transition-all group-hover:rotate-1">
+                        <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white ring-1 ring-slate-200 transition-all">
                             <img src="diego.jpg" alt="Diego Marín Aguilera" class="w-full h-80 object-cover bg-slate-100" onerror="this.src='https://via.placeholder.com/400x500?text=Diego+Marín'">
-                            <div class="bg-slate-900 text-white py-3 px-4 text-xs font-black uppercase tracking-widest">
-                                Diego Marín Aguilera
-                            </div>
+                            <div class="bg-slate-900 text-white py-3 px-4 text-xs font-black uppercase tracking-widest">Diego Marín Aguilera</div>
                         </div>
-                        <p class="mt-4 text-sm font-bold text-blue-600 uppercase italic tracking-wider">El Primer Aviador (1793)</p>
                     </div>
-
                     <div class="group">
-                        <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white ring-1 ring-slate-200 transition-all group-hover:-rotate-1">
+                        <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white ring-1 ring-slate-200 transition-all">
                             <img src="mariano.jpg" alt="Mariano Díez Tobar" class="w-full h-80 object-cover bg-slate-100" onerror="this.src='https://via.placeholder.com/400x500?text=Mariano+Díez'">
-                            <div class="bg-slate-900 text-white py-3 px-4 text-xs font-black uppercase tracking-widest">
-                                Mariano Díez Tobar
-                            </div>
+                            <div class="bg-slate-900 text-white py-3 px-4 text-xs font-black uppercase tracking-widest">Mariano Díez Tobar</div>
                         </div>
-                        <p class="mt-4 text-sm font-bold text-purple-600 uppercase italic tracking-wider">El Genio del Cine (1889)</p>
                     </div>
                 </div>
-
-                <div class="max-w-2xl mx-auto space-y-4">
-                    <p class="text-xl text-slate-500 font-medium leading-relaxed">
-                        Una exposición sobre el valor del <strong>esfuerzo</strong>, el <strong>trabajo</strong> y el respeto a nuestro entorno a través de dos genios burgaleses.
-                    </p>
-                    <button onclick="showTab('vuelo')" class="mt-4 px-10 py-4 bg-slate-900 text-white rounded-full font-black hover:bg-blue-600 transition-all transform hover:scale-105 uppercase tracking-widest text-xs shadow-xl">
-                        Explorar Exposición
-                    </button>
-                </div>
+                <p class="text-xl text-slate-500 font-medium leading-relaxed max-w-2xl mx-auto">Una exposición sobre el valor del <strong>esfuerzo</strong>, el <strong>trabajo</strong> y el respeto a nuestro entorno a través de dos genios burgaleses.</p>
             </div>
 
             <div id="vuelo" class="tab-content space-y-8">
@@ -97,22 +62,23 @@
                     <span class="text-4xl">🦅</span>
                     <h2 class="text-3xl font-black text-slate-900 uppercase italic">El Sueño de Volar</h2>
                 </div>
-                
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="bg-white p-8 rounded-3xl shadow-xl border-l-8 border-yellow-500">
-                        <h3 class="font-black text-2xl mb-4 text-yellow-700 uppercase">Diego Marín (1793)</h3>
+                        <h3 class="font-black text-2xl mb-4 text-yellow-700 uppercase">Diego Marín Aguilera (1757-1799)</h3>
+                        <p class="text-sm font-bold text-blue-600 mb-4 uppercase italic tracking-widest">Localidad: Coruña del Conde (Burgos)</p>
                         <p class="text-slate-700 leading-relaxed font-medium mb-4">
-                            No fue casualidad. Dedicó <strong>6 años de observación</strong> a las aves rapaces. Analizó cómo movían sus alas para planear.
+                            No fue casualidad. Dedicó <strong>6 años de observación</strong> a las aves rapaces. Analizó cómo movían sus alas para planear. Este pastor burgalés, con una mente científica adelantada a su tiempo, recolectó plumas de águilas y buitres para recubrir su estructura de madera de sauce y hierro forjado.
                         </p>
-                        <div class="bg-yellow-50 p-4 rounded-xl border border-yellow-100 text-sm italic font-bold text-yellow-800">
-                            "Construyó su propio aparato con hierro y plumas de águila. Logró volar 360 metros."
+                        <div class="bg-yellow-50 p-4 rounded-xl border border-yellow-100 text-sm italic font-bold text-yellow-800 mb-4">
+                            "Construyó su propio aparato con hierro y plumas de águila. Logró volar 360 metros desde las peñas del castillo."
                         </div>
+                        <p class="text-slate-700 leading-relaxed font-medium pt-4 border-t">
+                            <strong>El triste final:</strong> El 15 de mayo de 1793 realizó su proeza, pero tras aterrizar por la rotura de un perno, la ignorancia y el miedo de sus vecinos, alentados por la superstición, hicieron que <strong>quemaran su invento</strong>. Diego, destrozado por ver su obra en cenizas, murió de pena en 1799.
+                        </p>
                     </div>
                     <div class="bg-blue-900 text-white p-8 rounded-3xl flex flex-col justify-center shadow-lg">
                         <h4 class="font-black text-blue-400 text-xs uppercase tracking-widest mb-2">Lección de Vida</h4>
-                        <p class="text-lg font-medium italic opacity-90 leading-relaxed">
-                            "El genio es 1% inspiración y 99% transpiración. Diego no se rindió ante las burlas; trabajó hasta que sus pies dejaron de tocar el suelo."
-                        </p>
+                        <p class="text-lg font-medium italic opacity-90 leading-relaxed">"El genio es 1% inspiración y 99% transpiración. Diego no se rindió ante las burlas; trabajó hasta que sus pies dejaron de tocar el suelo. Su legado es un valor que debemos proteger frente a la intolerancia."</p>
                     </div>
                 </div>
             </div>
@@ -120,23 +86,28 @@
             <div id="cine" class="tab-content space-y-8">
                 <div class="flex items-center gap-4 border-b-4 border-purple-600 pb-4">
                     <span class="text-4xl">🎞️</span>
-                    <h2 class="text-3xl font-black text-slate-900 uppercase italic">La Magia del Tiempo</h2>
+                    <h2 class="text-3xl font-black text-slate-900 uppercase italic">El Padre del Séptimo Arte</h2>
                 </div>
-                
-                <div class="bg-white p-10 rounded-3xl shadow-2xl border border-slate-100">
-                    <h3 class="text-2xl font-black text-purple-700 mb-4 uppercase tracking-tighter">Mariano Díez Tobar: Compartir es progresar</h3>
-                    <p class="text-slate-700 leading-relaxed text-lg mb-6">
-                        En 1889, seis años antes que los franceses, Mariano ya explicaba cómo funcionaría el cine. Su gran invento fue la <strong>solución de intermitencia</strong>.
-                    </p>
-                    
-                    <div class="bg-slate-900 p-8 rounded-3xl text-center space-y-6">
-                        <div id="projector-screen" class="h-48 bg-white rounded-xl flex items-center justify-center text-8xl transition-all duration-100">
-                            📽️
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-8 rounded-3xl shadow-xl border-l-8 border-purple-500">
+                        <h3 class="font-black text-2xl mb-4 text-purple-700 uppercase">Mariano Díez Tobar (1868-1926)</h3>
+                        <p class="text-sm font-bold text-purple-600 mb-4 uppercase italic tracking-widest">Localidad: Tardajos (Burgos)</p>
+                        <p class="text-slate-700 leading-relaxed font-medium mb-4">
+                            Sacerdote paúl y científico superdotado. En 1889, durante una conferencia en el colegio de Murguía, explicó técnicamente el secreto que permitiría el cine: la <strong>intermitencia</strong>. Este sistema hace que la película se detenga un instante frente a la luz para que el cerebro no vea imágenes borrosas.
+                        </p>
+                        <p class="text-slate-700 leading-relaxed font-medium mb-4">
+                            Cedió sus apuntes a A. Flamereau, quien fue el nexo con los hermanos Lumière. Además, fue un inventor imparable: creó el <strong>Logautógrafo</strong> (voz a texto), el <strong>Iconoscopio</strong> (precursor del televisor) y el Icocinéfono para dar sonido a las imágenes.
+                        </p>
+                        <div class="bg-purple-50 p-4 rounded-xl border border-purple-100 text-sm font-bold text-purple-800 italic">
+                            "Sus inventos fueron la semilla del cine y la televisión moderna, siempre desde la humildad y la generosidad burgalesa."
                         </div>
+                    </div>
+                    <div class="bg-slate-900 p-8 rounded-3xl text-center space-y-6">
+                        <div id="projector-screen" class="h-48 bg-white rounded-xl flex flex-col items-center justify-center text-7xl transition-all duration-100">📽️</div>
                         <div class="flex flex-col items-center gap-4">
-                            <input type="range" id="fps-range" min="1" max="24" value="2" class="w-64 accent-purple-500">
+                            <input type="range" id="fps-range" min="1" max="24" value="2" class="w-full accent-purple-500">
                             <span id="fps-value" class="text-purple-400 font-mono text-xl font-bold">2 FPS</span>
-                            <button onclick="toggleProjector()" id="proj-btn" class="bg-purple-600 px-8 py-3 rounded-full text-white font-black hover:bg-purple-500 transition-all uppercase text-xs">Iniciar Proyector</button>
+                            <button onclick="toggleProjector()" id="proj-btn" class="w-full bg-purple-600 px-8 py-3 rounded-full text-white font-black hover:bg-purple-500 transition-all uppercase text-xs">Simular Intermitencia</button>
                         </div>
                     </div>
                 </div>
@@ -144,135 +115,129 @@
 
             <div id="tablas" class="tab-content space-y-12">
                 <div class="text-center">
-                    <h2 class="text-3xl font-black text-slate-900 uppercase">Cronología y Justicia Histórica</h2>
-                    <p class="text-slate-500 font-bold uppercase text-[10px] tracking-widest mt-2">¿Quién fue primero?</p>
+                    <h2 class="text-3xl font-black text-slate-900 uppercase tracking-tighter italic">Justicia Histórica: Los Datos</h2>
                 </div>
-
-                <div class="space-y-4">
-                    <h3 class="text-xl font-black text-blue-600 flex items-center gap-2 italic uppercase">📍 El Cielo: Diego vs Wright</h3>
-                    <div class="overflow-x-auto rounded-3xl border-2 border-slate-100 shadow-xl">
-                        <table class="w-full text-left border-collapse">
-                            <thead class="bg-blue-600 text-white font-black uppercase text-[10px] tracking-widest">
-                                <tr>
-                                    <th class="p-6">Año</th>
-                                    <th class="p-6">Nombre</th>
-                                    <th class="p-6">Hazaña / Logro</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-sm font-semibold">
-                                <tr class="bg-blue-50/50 border-b border-blue-100 font-black text-blue-900">
-                                    <td class="p-6">1793</td>
-                                    <td class="p-6">Diego Marín Aguilera</td>
-                                    <td class="p-6">Vuelo de 360m en Coruña del Conde (Burgos).</td>
-                                </tr>
-                                <tr class="border-b border-slate-100">
-                                    <td class="p-6 text-slate-400">1891</td>
-                                    <td class="p-6 text-slate-400">Otto Lilienthal</td>
-                                    <td class="p-6 text-slate-400">Vuelos planeados en Alemania.</td>
-                                </tr>
-                                <tr class="bg-slate-50">
-                                    <td class="p-6">1903</td>
-                                    <td class="p-6 font-bold">Hermanos Wright</td>
-                                    <td class="p-6 italic">Primer vuelo motorizado (260m).</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div class="space-y-8">
+                    <div>
+                        <h3 class="text-xl font-black text-blue-600 italic uppercase mb-4">📍 El Cielo: Diego vs Wright</h3>
+                        <div class="overflow-x-auto rounded-3xl border shadow-xl">
+                            <table class="w-full text-left">
+                                <thead class="bg-blue-600 text-white font-black uppercase text-[10px]">
+                                    <tr><th class="p-6">Año</th><th class="p-6">Nombre</th><th class="p-6">Hazaña</th></tr>
+                                </thead>
+                                <tbody class="text-sm font-semibold italic">
+                                    <tr class="bg-blue-50 border-b">
+                                        <td class="p-6">1793</td><td class="p-6">Diego Marín Aguilera</td><td class="p-6">Vuelo documentado de 360m en Burgos. 110 años antes que los Wright.</td>
+                                    </tr>
+                                    <tr class="bg-white border-b">
+                                        <td class="p-6">1903</td><td class="p-6 italic">Hermanos Wright</td><td class="p-6 italic">Primer vuelo motorizado (260m).</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
-                </div>
-
-                <div class="space-y-4">
-                    <h3 class="text-xl font-black text-purple-600 flex items-center gap-2 italic uppercase">📍 El Tiempo: Mariano vs Lumière</h3>
-                    <div class="overflow-x-auto rounded-3xl border-2 border-slate-100 shadow-xl">
-                        <table class="w-full text-left border-collapse">
-                            <thead class="bg-purple-600 text-white font-black uppercase text-[10px] tracking-widest">
-                                <tr>
-                                    <th class="p-6">Año</th>
-                                    <th class="p-6">Nombre</th>
-                                    <th class="p-6">Aportación Fundamental</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-sm font-semibold">
-                                <tr class="bg-purple-50/50 border-b border-purple-100 font-black text-purple-900">
-                                    <td class="p-6">1889</td>
-                                    <td class="p-6">Mariano Díez Tobar</td>
-                                    <td class="p-6">Explicó la solución al movimiento en conferencia pública.</td>
-                                </tr>
-                                <tr class="border-b border-slate-100">
-                                    <td class="p-6 text-slate-400">1892</td>
-                                    <td class="p-6 text-slate-400">Léon Bouly</td>
-                                    <td class="p-6 text-slate-400">Inventó el término "Cinematógrafo".</td>
-                                </tr>
-                                <tr class="bg-slate-50">
-                                    <td class="p-6">1895</td>
-                                    <td class="p-6 font-bold">Hermanos Lumière</td>
-                                    <td class="p-6 italic">Primera proyección comercial basada en ideas previas.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div id="debate" class="tab-content space-y-10">
-                <div class="bg-emerald-600 text-white p-12 rounded-[3rem] shadow-2xl text-center relative overflow-hidden">
-                    <div class="absolute -top-10 -right-10 text-9xl opacity-10">🛡️</div>
-                    <h3 class="text-3xl font-black mb-8 uppercase tracking-widest italic">NUESTRO COMPROMISO</h3>
-                    <div class="text-7xl md:text-8xl font-black tracking-[0.2em] mb-10 text-emerald-300">D.I.E.G.O.</div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left font-black text-[10px] max-w-lg mx-auto uppercase tracking-[0.15em]">
-                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
-                            <span class="text-emerald-300 mr-2 text-lg">D</span> DISCIPLINA (el Centro)
-                        </div>
-                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
-                            <span class="text-emerald-300 mr-2 text-lg">I</span> INGENIO, Intelecto activo y despierto
-                        </div>
-                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
-                            <span class="text-emerald-300 mr-2 text-lg">E</span> ESFUERZO 
-                        </div>
-                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
-                            <span class="text-emerald-300 mr-2 text-lg">G</span> GRATITUD
-                        </div>
-                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
-                            <span class="text-emerald-300 mr-2 text-lg">O</span> ORDEN
+                    <div>
+                        <h3 class="text-xl font-black text-purple-600 italic uppercase mb-4">📍 El Cine: Mariano vs Lumière</h3>
+                        <div class="overflow-x-auto rounded-3xl border shadow-xl">
+                            <table class="w-full text-left">
+                                <thead class="bg-purple-600 text-white font-black uppercase text-[10px]">
+                                    <tr><th class="p-6">Año</th><th class="p-6">Nombre</th><th class="p-6">Hazaña</th></tr>
+                                </thead>
+                                <tbody class="text-sm font-semibold italic">
+                                    <tr class="bg-purple-50 border-b">
+                                        <td class="p-6">1889</td><td class="p-6">Mariano Díez Tobar</td><td class="p-6">Presentación del sistema de intermitencia y diseño del cinematógrafo.</td>
+                                    </tr>
+                                    <tr class="bg-white border-b">
+                                        <td class="p-6">1895</td><td class="p-6 italic">Hermanos Lumière</td><td class="p-6 italic">Primera proyección pública de pago.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id="mariano-val" class="tab-content space-y-10">
-                <div class="bg-purple-700 text-white p-12 rounded-[3rem] shadow-2xl text-center relative overflow-hidden">
-                    <div class="absolute -top-10 -right-10 text-9xl opacity-10">💡</div>
-                    <h3 class="text-3xl font-black mb-8 uppercase tracking-widest italic">EL LEGADO DEL INVENTOR</h3>
-                    <div class="text-7xl md:text-8xl font-black tracking-[0.1em] mb-10 text-purple-300">MARIANO</div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-left font-black text-[10px] max-w-2xl mx-auto uppercase tracking-[0.1em]">
-                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
-                            <span class="text-purple-300 mr-2 text-lg">M</span> <strong>MOTIVACIÓN:</strong> El motor para investigar y crear.
-                        </div>
-                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
-                            <span class="text-purple-300 mr-2 text-lg">A</span> <strong>AUTODIDACTA:</strong> Capacidad de aprender por uno mismo.
-                        </div>
-                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
-                            <span class="text-purple-300 mr-2 text-lg">R</span> <strong>RESPETO:</strong> Valorar las ideas y el entorno.
-                        </div>
-                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
-                            <span class="text-purple-300 mr-2 text-lg">I</span> <strong>INGENIO:</strong> Creatividad para resolver problemas.
-                        </div>
-                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
-                            <span class="text-purple-300 mr-2 text-lg">A</span> <strong>AMBICIÓN (Sana):</strong> Deseo de superarse cada día.
-                        </div>
-                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all">
-                            <span class="text-purple-300 mr-2 text-lg">N</span> <strong>NOBLEZA:</strong> Compartir el conocimiento.
-                        </div>
-                        <div class="bg-white/10 p-5 rounded-2xl border border-white/20 hover:bg-white/20 transition-all md:col-span-2">
-                            <span class="text-purple-300 mr-2 text-lg">O</span> <strong>OBSERVACIÓN:</strong> Mirar el mundo para entenderlo.
-                        </div>
+            <div id="debate" class="tab-content space-y-8">
+                <div class="bg-emerald-600 text-white p-12 rounded-[3rem] text-center shadow-2xl">
+                    <h3 class="text-7xl font-black tracking-[0.2em] mb-10 text-emerald-300">D.I.E.G.O.</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-emerald-50 p-8 rounded-3xl border-l-8 border-emerald-500 shadow-sm">
+                        <h4 class="font-black text-emerald-800 uppercase mb-2">D - Disciplina</h4>
+                        <p class="text-sm font-medium text-slate-600 italic">El rigor extremo que Diego aplicó durante 6 años de observación constante de las aves rapaces.</p>
+                    </div>
+                    <div class="bg-emerald-50 p-8 rounded-3xl border-l-8 border-emerald-500 shadow-sm">
+                        <h4 class="font-black text-emerald-800 uppercase mb-2">I - Ingenio</h4>
+                        <p class="text-sm font-medium text-slate-600 italic">La capacidad de crear un avión con materiales sencillos como madera y plumas, adelantándose a la ingeniería moderna.</p>
+                    </div>
+                    <div class="bg-emerald-50 p-8 rounded-3xl border-l-8 border-emerald-500 shadow-sm">
+                        <h4 class="font-black text-emerald-800 uppercase mb-2">E - Esfuerzo</h4>
+                        <p class="text-sm font-medium text-slate-600 italic">El trabajo incansable día tras día, a pesar de la falta de recursos y la incomprensión de los demás.</p>
+                    </div>
+                    <div class="bg-emerald-50 p-8 rounded-3xl border-l-8 border-emerald-500 shadow-sm">
+                        <h4 class="font-black text-emerald-800 uppercase mb-2">G - Gratitud</h4>
+                        <p class="text-sm font-medium text-slate-600 italic">Saber reconocer a quienes le ayudaron, como el herrero del pueblo que forjó las piezas clave del aparato.</p>
+                    </div>
+                    <div class="bg-emerald-50 p-8 rounded-3xl border-l-8 border-emerald-500 shadow-sm">
+                        <h4 class="font-black text-emerald-800 uppercase mb-2">O - Orden</h4>
+                        <p class="text-sm font-medium text-slate-600 italic">Seguir un método lógico de diseño y construcción, transformando la idea en una realidad tangible.</p>
                     </div>
                 </div>
+            </div>
 
-                <div class="p-8 bg-purple-50 rounded-3xl border-2 border-purple-100 text-center">
-                    <p class="text-purple-900 font-bold italic">
-                        "Mariano Díez Tobar no solo inventó máquinas, inventó formas de ver el futuro."
-                    </p>
+            <div id="mariano-val" class="tab-content space-y-8">
+                <div class="bg-purple-700 text-white p-12 rounded-[3rem] text-center shadow-2xl">
+                    <h3 class="text-7xl font-black tracking-[0.1em] mb-10 text-purple-300">MARIANO</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-purple-50 p-8 rounded-3xl border-l-8 border-purple-500 shadow-sm">
+                        <h4 class="font-black text-purple-800 uppercase mb-2">M - Motivación</h4>
+                        <p class="text-sm font-medium text-slate-600 italic">La llama interna que le llevó a investigar campos tan variados como el cine, la medicina y el lenguaje.</p>
+                    </div>
+                    <div class="bg-purple-50 p-8 rounded-3xl border-l-8 border-purple-500 shadow-sm">
+                        <h4 class="font-black text-purple-800 uppercase mb-2">A - Autodidacta</h4>
+                        <p class="text-sm font-medium text-slate-600 italic">Su capacidad para aprender y resolver problemas complejos sin depender de grandes academias.</p>
+                    </div>
+                    <div class="bg-purple-50 p-8 rounded-3xl border-l-8 border-purple-500 shadow-sm">
+                        <h4 class="font-black text-purple-800 uppercase mb-2">R - Respeto</h4>
+                        <p class="text-sm font-medium text-slate-600 italic">La consideración hacia la ciencia y la generosidad al compartir sus hallazgos con el mundo.</p>
+                    </div>
+                    <div class="bg-purple-50 p-8 rounded-3xl border-l-8 border-purple-500 shadow-sm">
+                        <h4 class="font-black text-purple-800 uppercase mb-2">I - Ingenio</h4>
+                        <p class="text-sm font-medium text-slate-600 italic">La resolución magistral de la intermitencia, el "corazón" técnico del cinematógrafo.</p>
+                    </div>
+                    <div class="bg-purple-50 p-8 rounded-3xl border-l-8 border-purple-500 shadow-sm">
+                        <h4 class="font-black text-purple-800 uppercase mb-2">A - Ambición</h4>
+                        <p class="text-sm font-medium text-slate-600 italic">No conformarse con lo que existe, sino buscar siempre una mejora para la humanidad.</p>
+                    </div>
+                    <div class="bg-purple-50 p-8 rounded-3xl border-l-8 border-purple-500 shadow-sm">
+                        <h4 class="font-black text-purple-800 uppercase mb-2">N - Nobleza</h4>
+                        <p class="text-sm font-medium text-slate-600 italic">Su desinterés material al ceder sus planos más valiosos de forma gratuita.</p>
+                    </div>
+                    <div class="bg-purple-50 p-8 rounded-3xl border-l-8 border-purple-500 shadow-sm">
+                        <h4 class="font-black text-purple-800 uppercase mb-2">O - Observación</h4>
+                        <p class="text-sm font-medium text-slate-600 italic">Mirar el mundo con ojos curiosos para descubrir las leyes ocultas tras la luz y el movimiento.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="reflexion" class="tab-content space-y-10">
+                <div class="bg-white p-8 md:p-12 rounded-[3rem] shadow-xl border-2 border-slate-100">
+                    <h2 class="text-3xl font-black text-slate-900 uppercase italic mb-6">Reflexión Final sobre el Genio y la Sociedad</h2>
+                    <div class="bg-amber-50 p-8 rounded-2xl border-l-8 border-amber-500 mb-8">
+                        <p class="text-slate-800 leading-relaxed font-medium">
+                            El <strong>CIS 2016</strong> analiza cómo encuentran empleo los ciudadanos y sí recoge que la vía más frecuente es <strong>“a través de familiares o amigos”</strong> según sus barómetros y estudios de opinión. 
+                        </p>
+                    </div>
+                    <div class="space-y-6 text-slate-700 font-medium italic">
+                        <p>A partir de la historia de estos dos genios burgaleses, se nos plantean preguntas incómodas para el presente:</p>
+                        <ul class="list-disc pl-8 space-y-4">
+                            <li>¿Cómo cuida la sociedad actual a los "Diegos" y "Marianos" que hay en la actualidad? Aquellos que no tienen contactos pero sí un ingenio desbordante.</li>
+                            <li>¿Valora la sociedad la disciplina, el ingenio y el esfuerzo, valores de estos grandes genios, o seguimos atrapados en el valor de los amiguismos y enchufismos?</li>
+                            <li>¿Estamos permitiendo que el talento se pierda o "se queme" por la envidia o la falta de apoyo institucional y social?</li>
+                            <li>¿Qué podemos hacer nosotros como comunidad educativa para proteger y fomentar el genio autodidacta?</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
@@ -283,65 +248,31 @@
                 <p class="text-xl font-black uppercase tracking-tighter italic">IES Diego Marín Aguilera</p>
                 <p class="text-[9px] text-slate-500 font-black uppercase tracking-[0.3em]">Burgos · Control y Robótica</p>
             </div>
-            <div class="mt-6 md:mt-0 text-[10px] text-slate-600 font-black uppercase tracking-widest text-right">
-                Jornadas Culturales 2026
-            </div>
+            <div class="mt-6 md:mt-0 text-[10px] text-slate-600 font-black uppercase tracking-widest">Jornadas Culturales 2026</div>
         </footer>
     </div>
 
     <script>
         function showTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('bg-blue-600'));
-            
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('bg-blue-600', 'bg-emerald-700', 'bg-purple-800'));
             document.getElementById(tabId).classList.add('active');
-            document.getElementById('btn-' + tabId).classList.add('bg-blue-600');
-            
+            const activeBtn = document.getElementById('btn-' + tabId);
+            if(tabId === 'debate') activeBtn.classList.add('bg-emerald-700');
+            else if (tabId === 'mariano-val') activeBtn.classList.add('bg-purple-800');
+            else activeBtn.classList.add('bg-blue-600');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        let isPlaying = false;
-        let interval;
-        const screen = document.getElementById('projector-screen');
-        const range = document.getElementById('fps-range');
-        const fpsVal = document.getElementById('fps-value');
-        const btn = document.getElementById('proj-btn');
-        let frame = 0;
-
-        range.addEventListener('input', () => {
-            fpsVal.innerText = range.value + " FPS";
-            if(isPlaying) {
-                stopProj();
-                startProj();
-            }
-        });
-
-        function startProj() {
-            interval = setInterval(() => {
-                frame++;
-                screen.innerText = (frame % 2 === 0) ? "🦅" : "🦅";
-                screen.classList.toggle('projector-glow');
-                screen.style.opacity = (frame % 2 === 0) ? "0.9" : "1";
-            }, 1000 / range.value);
-        }
-
-        function stopProj() {
-            clearInterval(interval);
-        }
-
-        function toggleProjector() {
-            isPlaying = !isPlaying;
-            if(isPlaying) {
-                startProj();
-                btn.innerText = "Detener Proyector";
-                btn.classList.replace('bg-purple-600', 'bg-red-600');
-            } else {
-                stopProj();
-                screen.innerText = "📽️";
-                screen.classList.remove('projector-glow');
-                btn.innerText = "Iniciar Proyector";
-                btn.classList.replace('bg-red-600', 'bg-purple-600');
-            }
+        let isPlaying = false, interval, frame = 0;
+        const screen = document.getElementById('projector-screen'), range = document.getElementById('fps-range'), fpsVal = document.getElementById('fps-value'), btn = document.getElementById('proj-btn');
+        range.addEventListener('input', () => { fpsVal.innerText = range.value + " FPS"; if(isPlaying) { stopProj(); startProj(); } });
+        function startProj() { interval = setInterval(() => { frame++; screen.innerText = (frame % 2 === 0) ? "🦅" : "🎞️"; screen.classList.toggle('projector-glow'); }, 1000 / range.value); }
+        function stopProj() { clearInterval(interval); }
+        function toggleProjector() { 
+            isPlaying = !isPlaying; 
+            if(isPlaying) { startProj(); btn.innerText = "Detener"; btn.classList.replace('bg-purple-600', 'bg-red-600'); } 
+            else { stopProj(); screen.innerText = "📽️"; btn.innerText = "Simular Intermitencia"; btn.classList.replace('bg-red-600', 'bg-purple-600'); } 
         }
     </script>
 </body>
