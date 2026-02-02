@@ -9,7 +9,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
         .tab-content { display: none; }
-        .tab-content.active { display: block; animation: fadeIn 0.4s ease-out; }
+        .tab-content.active { display: block !important; animation: fadeIn 0.4s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
@@ -21,10 +21,10 @@
     <div class="max-w-6xl mx-auto bg-white rounded-[40px] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.15)] overflow-hidden border border-slate-200">
         
         <nav class="flex bg-slate-900 text-white overflow-x-auto scrollbar-hide border-b-4 border-blue-600 sticky top-0 z-50">
-            <button onclick="showTab('inicio')" id="btn-inicio" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-slate-800 transition-all uppercase text-[10px] font-black tracking-widest bg-blue-600">Inicio</button>
-            <button onclick="showTab('vuelo')" id="btn-vuelo" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-slate-800 transition-all uppercase text-[10px] font-black tracking-widest">Pioneros Vuelo</button>
-            <button onclick="showTab('cine')" id="btn-cine" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-slate-800 transition-all uppercase text-[10px] font-black tracking-widest">Pionero Cine</button>
-            <button onclick="showTab('tablas')" id="btn-tablas" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-slate-800 transition-all uppercase text-[10px] font-black tracking-widest">Comparativa</button>
+            <button onclick="showTab('inicio')" id="btn-inicio" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-slate-800 transition-all uppercase text-[10px] font-black tracking-widest bg-blue-600 text-white">Inicio</button>
+            <button onclick="showTab('vuelo')" id="btn-vuelo" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-slate-800 transition-all uppercase text-[10px] font-black tracking-widest text-white">Pioneros Vuelo</button>
+            <button onclick="showTab('cine')" id="btn-cine" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-slate-800 transition-all uppercase text-[10px] font-black tracking-widest text-white">Pionero Cine</button>
+            <button onclick="showTab('tablas')" id="btn-tablas" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-slate-800 transition-all uppercase text-[10px] font-black tracking-widest text-white">Comparativa</button>
             <button onclick="showTab('debate')" id="btn-debate" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-emerald-700 transition-all uppercase text-[10px] font-black tracking-widest text-emerald-300">Valores D.I.E.G.O.</button>
             <button onclick="showTab('mariano-val')" id="btn-mariano-val" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-purple-800 transition-all uppercase text-[10px] font-black tracking-widest text-purple-300">Valores M.A.R.I.A.N.O.</button>
             <button onclick="showTab('reflexion')" id="btn-reflexion" class="nav-btn px-6 py-5 flex-1 whitespace-nowrap hover:bg-slate-800 transition-all uppercase text-[10px] font-black tracking-widest text-amber-400">Reflexión</button>
@@ -40,6 +40,15 @@
                     CONQUISTANDO EL <span class="text-blue-600 italic">CIELO</span> <br/> 
                     Y EL <span class="text-purple-600 italic">CINE</span>
                 </h1>
+
+                <!-- BOTÓN ROJO DE OBJETIVO -->
+                <div class="py-6">
+                    <button onclick="document.getElementById('seccion-objetivo').scrollIntoView({behavior: 'smooth'})" 
+                            class="bg-red-600 hover:bg-red-700 text-white px-10 py-6 rounded-2xl font-black uppercase text-xl shadow-[0_20px_50px_rgba(220,38,38,0.3)] transition-all transform hover:scale-105 border-b-8 border-red-900">
+                        🎯 OBJETIVO DE ESTA EXPOSICIÓN
+                    </button>
+                </div>
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-12 max-w-4xl mx-auto">
                     <div class="group">
                         <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white ring-1 ring-slate-200 transition-all">
@@ -55,6 +64,68 @@
                     </div>
                 </div>
                 <p class="text-xl text-slate-500 font-medium leading-relaxed max-w-2xl mx-auto">Una exposición sobre el valor del <strong>esfuerzo</strong>, el <strong>trabajo</strong> y el respeto a nuestro entorno a través de dos genios burgaleses.</p>
+
+                <!-- CONTENIDO DEL OBJETIVO -->
+                <div id="seccion-objetivo" class="mt-20 pt-20 border-t-4 border-dashed border-slate-200 text-left space-y-12">
+                    <div class="bg-slate-900 text-white p-10 rounded-[3rem] shadow-2xl">
+                        <h2 class="text-3xl font-black uppercase italic mb-6">Misión: Aprovechar vuestro tiempo</h2>
+                        <p class="text-xl opacity-90 leading-relaxed font-medium">
+                            Utilizando a estos dos grandes inventores, queremos dejar claro a los alumnos de <strong>1º de ESO</strong> que el objetivo es motivarles para que <strong>aprovechen el tiempo</strong>. Es hora de bajar los ratios de incidencias y subir vuestra ambición académica.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start text-left">
+                        <div class="bg-white p-8 rounded-[2rem] shadow-xl border-2 border-red-100 w-full overflow-hidden">
+                            <h3 class="font-black text-slate-900 uppercase mb-6 flex items-center gap-2">📊 Datos Reales 1º ESO</h3>
+                            <div class="overflow-x-auto rounded-2xl border border-slate-200">
+                                <table class="w-full text-left text-sm">
+                                    <thead class="bg-slate-900 text-white font-black uppercase text-[10px]">
+                                        <tr><th class="p-4">Categoría</th><th class="p-4">Centro</th><th class="p-4 bg-red-600">Vuestro Grupo</th></tr>
+                                    </thead>
+                                    <tbody class="font-bold text-slate-700">
+                                        <tr class="border-b"><td>Alumnos</td><td class="p-4">778</td><td class="p-4 text-red-600">80 (10,3%)</td></tr>
+                                        <tr class="border-b bg-red-50"><td>Incidencias</td><td class="p-4">431</td><td class="p-4 text-red-700 font-black">96 (22,3%) ⚠️</td></tr>
+                                        <tr class="bg-slate-100"><td colspan="3" class="p-2 text-center text-[10px] uppercase font-black">Rendimiento Académico</td></tr>
+                                        <tr class="border-b"><td>Todo Aprobado</td><td colspan="2" class="p-4 text-emerald-600 text-right">33% (27 alumnos)</td></tr>
+                                        <tr class="border-b"><td>1 o 2 Suspensas</td><td colspan="2" class="p-4 text-blue-600 text-right">13,5% (11 alumnos)</td></tr>
+                                        <tr class="bg-red-100"><td>+3 Suspensas</td><td colspan="2" class="p-4 text-red-700 text-right font-black italic">53,5% (¡La mayoría!)</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="space-y-6">
+                            <!-- SECCIÓN MEJORADA: EL EFECTO CINE -->
+                            <div class="bg-purple-900 text-white p-8 rounded-[2.5rem] shadow-lg border-b-8 border-purple-950">
+                                <h4 class="font-black uppercase text-xl mb-4 flex items-center gap-3">
+                                    <span class="text-3xl">🤫</span> EL EFECTO CINE
+                                </h4>
+                                <p class="text-sm opacity-90 leading-relaxed mb-6 italic">
+                                    ¿Por qué en una sala de cine nadie grita? Porque todos han pagado por un tiempo que consideran <strong>valioso</strong>. Tu educación en el instituto cuesta mucho dinero y esfuerzo; es tu película, no dejes que nadie la arruine.
+                                </p>
+                                <div class="space-y-3">
+                                    <div class="flex items-start gap-3 bg-purple-800/50 p-3 rounded-xl border border-purple-700">
+                                        <span class="text-lg">👀</span>
+                                        <p class="text-xs font-bold uppercase tracking-tight">Mándale callar con la mirada: Si alguien interrumpe, mírale con firmeza. Hazle saber que te está robando tu tiempo.</p>
+                                    </div>
+                                    <div class="flex items-start gap-3 bg-purple-800/50 p-3 rounded-xl border border-purple-700">
+                                        <span class="text-lg">🚫</span>
+                                        <p class="text-xs font-bold uppercase tracking-tight">No te sumes al caos: Reírse de la gracia del que molesta es darle permiso para seguir. Sé tú el protagonista, no el público del payaso.</p>
+                                    </div>
+                                    <div class="flex items-start gap-3 bg-emerald-500/20 p-3 rounded-xl border border-emerald-500/50">
+                                        <span class="text-lg">💎</span>
+                                        <p class="text-xs font-bold uppercase tracking-tight text-emerald-300">Valora tu futuro: Cada minuto de ruido es un minuto menos que tienes para aprender el "secreto" que te hará libre.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-emerald-50 border-l-8 border-emerald-600 p-8 rounded-3xl">
+                                <h4 class="font-black text-emerald-900 uppercase">🎸 El Efecto Concierto</h4>
+                                <p class="text-sm text-slate-700 mt-2 italic">Disfrutas un concierto porque te sabes la canción. Si vienes a clase con la lección leída, <strong>no te aburrirás</strong> porque sabrás de qué trata el tema.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div id="vuelo" class="tab-content space-y-8">
@@ -63,7 +134,7 @@
                     <h2 class="text-3xl font-black text-slate-900 uppercase italic">El Sueño de Volar</h2>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-white p-8 rounded-3xl shadow-xl border-l-8 border-yellow-500">
+                    <div class="bg-white p-8 rounded-3xl shadow-xl border-l-8 border-yellow-500 text-left">
                         <h3 class="font-black text-2xl mb-4 text-yellow-700 uppercase">Diego Marín Aguilera (1757-1799)</h3>
                         <p class="text-sm font-bold text-blue-600 mb-4 uppercase italic tracking-widest">Localidad: Coruña del Conde (Burgos)</p>
                         <p class="text-slate-700 leading-relaxed font-medium mb-4">
@@ -89,7 +160,7 @@
                     <h2 class="text-3xl font-black text-slate-900 uppercase italic">El Padre del Séptimo Arte</h2>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-white p-8 rounded-3xl shadow-xl border-l-8 border-purple-500">
+                    <div class="bg-white p-8 rounded-3xl shadow-xl border-l-8 border-purple-500 text-left">
                         <h3 class="font-black text-2xl mb-4 text-purple-700 uppercase">Mariano Díez Tobar (1868-1926)</h3>
                         <p class="text-sm font-bold text-purple-600 mb-4 uppercase italic tracking-widest">Localidad: Tardajos (Burgos)</p>
                         <p class="text-slate-700 leading-relaxed font-medium mb-4">
@@ -117,7 +188,7 @@
                 <div class="text-center">
                     <h2 class="text-3xl font-black text-slate-900 uppercase tracking-tighter italic">Justicia Histórica: Los Datos</h2>
                 </div>
-                <div class="space-y-8">
+                <div class="space-y-8 text-left">
                     <div>
                         <h3 class="text-xl font-black text-blue-600 italic uppercase mb-4">📍 El Cielo: Diego vs Wright</h3>
                         <div class="overflow-x-auto rounded-3xl border shadow-xl">
@@ -161,7 +232,7 @@
                 <div class="bg-emerald-600 text-white p-12 rounded-[3rem] text-center shadow-2xl">
                     <h3 class="text-7xl font-black tracking-[0.2em] mb-10 text-emerald-300">D.I.E.G.O.</h3>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
                     <div class="bg-emerald-50 p-8 rounded-3xl border-l-8 border-emerald-500 shadow-sm">
                         <h4 class="font-black text-emerald-800 uppercase mb-2">D - Disciplina</h4>
                         <p class="text-sm font-medium text-slate-600 italic">El rigor extremo que Diego aplicó durante 6 años de observación constante de las aves rapaces.</p>
@@ -189,7 +260,7 @@
                 <div class="bg-purple-700 text-white p-12 rounded-[3rem] text-center shadow-2xl">
                     <h3 class="text-7xl font-black tracking-[0.1em] mb-10 text-purple-300">MARIANO</h3>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-left">
                     <div class="bg-purple-50 p-8 rounded-3xl border-l-8 border-purple-500 shadow-sm">
                         <h4 class="font-black text-purple-800 uppercase mb-2">M - Motivación</h4>
                         <p class="text-sm font-medium text-slate-600 italic">La llama interna que le llevó a investigar campos tan variados como el cine, la medicina y el lenguaje.</p>
@@ -222,7 +293,7 @@
             </div>
 
             <div id="reflexion" class="tab-content space-y-10">
-                <div class="bg-white p-8 md:p-12 rounded-[3rem] shadow-xl border-2 border-slate-100">
+                <div class="bg-white p-8 md:p-12 rounded-[3rem] shadow-xl border-2 border-slate-100 text-left">
                     <h2 class="text-3xl font-black text-slate-900 uppercase italic mb-6">Reflexión Final sobre el Genio y la Sociedad</h2>
                     <div class="bg-amber-50 p-8 rounded-2xl border-l-8 border-amber-500 mb-8">
                         <p class="text-slate-800 leading-relaxed font-medium">
@@ -254,25 +325,60 @@
 
     <script>
         function showTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('bg-blue-600', 'bg-emerald-700', 'bg-purple-800'));
-            document.getElementById(tabId).classList.add('active');
-            const activeBtn = document.getElementById('btn-' + tabId);
-            if(tabId === 'debate') activeBtn.classList.add('bg-emerald-700');
-            else if (tabId === 'mariano-val') activeBtn.classList.add('bg-purple-800');
-            else activeBtn.classList.add('bg-blue-600');
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.nav-btn');
+            buttons.forEach(btn => btn.classList.remove('bg-blue-600', 'bg-emerald-700', 'bg-purple-800'));
+
+            const currentTab = document.getElementById(tabId);
+            if (currentTab) currentTab.classList.add('active');
+
+            const currentBtn = document.getElementById('btn-' + tabId);
+            if (currentBtn) {
+                if(tabId === 'debate') currentBtn.classList.add('bg-emerald-700');
+                else if (tabId === 'mariano-val') currentBtn.classList.add('bg-purple-800');
+                else currentBtn.classList.add('bg-blue-600');
+            }
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         let isPlaying = false, interval, frame = 0;
-        const screen = document.getElementById('projector-screen'), range = document.getElementById('fps-range'), fpsVal = document.getElementById('fps-value'), btn = document.getElementById('proj-btn');
-        range.addEventListener('input', () => { fpsVal.innerText = range.value + " FPS"; if(isPlaying) { stopProj(); startProj(); } });
-        function startProj() { interval = setInterval(() => { frame++; screen.innerText = (frame % 2 === 0) ? "🦅" : "🎞️"; screen.classList.toggle('projector-glow'); }, 1000 / range.value); }
+        const screen = document.getElementById('projector-screen');
+        const range = document.getElementById('fps-range');
+        const fpsVal = document.getElementById('fps-value');
+        const btnProj = document.getElementById('proj-btn');
+
+        if(range) {
+            range.addEventListener('input', () => { 
+                fpsVal.innerText = range.value + " FPS"; 
+                if(isPlaying) { stopProj(); startProj(); } 
+            });
+        }
+
+        function startProj() { 
+            const speed = 1000 / parseInt(range.value);
+            interval = setInterval(() => { 
+                frame++; 
+                screen.innerText = (frame % 2 === 0) ? "🦅" : "🎞️"; 
+                screen.classList.toggle('projector-glow'); 
+            }, speed); 
+        }
+
         function stopProj() { clearInterval(interval); }
+
         function toggleProjector() { 
             isPlaying = !isPlaying; 
-            if(isPlaying) { startProj(); btn.innerText = "Detener"; btn.classList.replace('bg-purple-600', 'bg-red-600'); } 
-            else { stopProj(); screen.innerText = "📽️"; btn.innerText = "Simular Intermitencia"; btn.classList.replace('bg-red-600', 'bg-purple-600'); } 
+            if(isPlaying) { 
+                startProj(); 
+                btnProj.innerText = "Detener"; 
+                btnProj.classList.replace('bg-purple-600', 'bg-red-600'); 
+            } else { 
+                stopProj(); 
+                screen.innerText = "📽️"; 
+                btnProj.innerText = "Simular Intermitencia"; 
+                btnProj.classList.replace('bg-red-600', 'bg-purple-600'); 
+            } 
         }
     </script>
 </body>
