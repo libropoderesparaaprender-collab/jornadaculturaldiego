@@ -48,21 +48,11 @@
                     </button>
                 </div>
 <div style="text-align: center; margin: 20px 0;">
-  <video id="videoMariano" width="100%" style="max-width: 800px; border-radius: 8px; shadow: 0 4px 8px rgba(0,0,0,0.2);" controls loop>
+  <video width="100%" style="max-width: 800px; border-radius: 8px; background-color: black;" controls loop>
     <source src="https://drive.google.com/uc?export=download&id=1Irr1pswbq34RTQlpRw12Gu0GGpWcfIZc" type="video/mp4">
     Tu navegador no soporta la reproducción de videos.
   </video>
 </div>
-
-<script>
-  // Este código asegura que si el usuario hace clic para iniciar, 
-  // el navegador entienda que debe seguir repitiéndolo.
-  const v = document.getElementById('videoMariano');
-  v.addEventListener('ended', function() {
-    this.play();
-  }, false);
-</script>
-
                 
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-12 max-w-4xl mx-auto">
