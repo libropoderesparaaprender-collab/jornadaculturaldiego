@@ -14,9 +14,20 @@
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
         .projector-glow { box-shadow: 0 0 50px rgba(168, 85, 247, 0.4); }
+        
+        /* Optimización tipográfica para el reloj */
+        .tabular-nums { font-variant-numeric: tabular-nums; }
     </style>
 </head>
 <body class="bg-slate-50 min-h-screen p-2 md:p-6 lg:p-10">
+
+    <div id="reloj-profesional" class="fixed bottom-6 right-6 z-[100] bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl border border-slate-700 flex items-center gap-4 transition-all hover:scale-105 backdrop-blur-sm bg-opacity-95">
+        <div class="flex flex-col items-end">
+            <span class="text-[9px] uppercase tracking-[0.3em] text-blue-400 font-black">Hora Local</span>
+            <span id="txt-hora" class="text-2xl font-black tabular-nums">00:00:00</span>
+        </div>
+        <div class="w-1 h-8 bg-blue-500 rounded-full animate-pulse"></div>
+    </div>
 
     <div class="max-w-6xl mx-auto bg-white rounded-[40px] shadow-[0_35px_60px_-15px_rgba(0,0,0,0.15)] overflow-hidden border border-slate-200">
         
@@ -48,19 +59,15 @@
                     </button>
                 </div>
 
-<div style="text-align: center; margin: 20px 0;">
-  <iframe 
-    src="https://drive.google.com/file/d/1Irr1pswbq34RTQlpRw12Gu0GGpWcfIZc/preview" 
-    width="640" 
-    height="360" 
-    allow="autoplay" 
-    style="border: none; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
-  </iframe>
-</div>
-
-
-
-                
+                <div style="text-align: center; margin: 20px 0;">
+                  <iframe 
+                    src="https://drive.google.com/file/d/1Irr1pswbq34RTQlpRw12Gu0GGpWcfIZc/preview" 
+                    width="640" 
+                    height="360" 
+                    allow="autoplay" 
+                    style="border: none; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                  </iframe>
+                </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-12 max-w-4xl mx-auto">
                     <div class="group">
@@ -98,9 +105,9 @@
                                         <tr class="border-b"><td>Alumnos</td><td class="p-4">     </td><td class="p-4 text-red-600">      </td></tr>
                                         <tr class="border-b bg-red-50"><td>Incidencias</td><td class="p-4">    </td><td class="p-4 text-red-700 font-black">      ⚠️</td></tr>
                                         <tr class="bg-slate-100"><td colspan="3" class="p-2 text-center text-[10px] uppercase font-black">Rendimiento Académico</td></tr>
-                                        <tr class="border-b"><td>    Todo Aprobado </td><td colspan="2" class="p-4 text-emerald-600 text-right">     </td></tr>
+                                        <tr class="border-b"><td>    Todo Aprobado </td><td colspan="2" class="p-4 text-emerald-600 text-right">      </td></tr>
                                         <tr class="border-b"><td>1 o 2 Suspensas</td><td colspan="2" class="p-4 text-blue-600 text-right">    </td></tr>
-                                        <tr class="bg-red-100"><td>+3 Suspensas</td><td colspan="2" class="p-4 text-red-700 text-right font-black italic">    (¡La mayoría!)</td></tr>
+                                        <tr class="bg-red-100"><td>+3 Suspensas</td><td colspan="2" class="p-4 text-red-700 text-right font-black italic">     (¡La mayoría!)</td></tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -335,6 +342,28 @@
     </div>
 
     <script>
+        /**
+         * Lógica del Reloj en Tiempo Real
+         */
+        function actualizarReloj() {
+            const elHora = document.getElementById('txt-hora');
+            const ahora = new Date();
+            
+            // Formateo profesional con ceros a la izquierda
+            const h = String(ahora.getHours()).padStart(2, '0');
+            const m = String(ahora.getMinutes()).padStart(2, '0');
+            const s = String(ahora.getSeconds()).padStart(2, '0');
+            
+            elHora.textContent = `${h}:${m}:${s}`;
+        }
+        
+        // Iniciar reloj inmediatamente y cada segundo
+        actualizarReloj();
+        setInterval(actualizarReloj, 1000);
+
+        /**
+         * Lógica de Navegación entre Pestañas
+         */
         function showTab(tabId) {
             const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => tab.classList.remove('active'));
@@ -354,6 +383,9 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
+        /**
+         * Lógica del Simulador de Proyector
+         */
         let isPlaying = false, interval, frame = 0;
         const screen = document.getElementById('projector-screen');
         const range = document.getElementById('fps-range');
