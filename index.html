@@ -14,8 +14,6 @@
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
         .projector-glow { box-shadow: 0 0 50px rgba(168, 85, 247, 0.4); }
-        
-        /* Optimización tipográfica para el reloj */
         .tabular-nums { font-variant-numeric: tabular-nums; }
     </style>
 </head>
@@ -102,7 +100,7 @@
                                         <tr><th class="p-4">Categoría</th><th class="p-4">Centro</th><th class="p-4 bg-red-600">Vuestro Grupo</th></tr>
                                     </thead>
                                     <tbody class="font-bold text-slate-700">
-                                        <tr class="border-b"><td>Alumnos</td><td class="p-4">     </td><td class="p-4 text-red-600">      </td></tr>
+                                        <tr class="border-b"><td>Alumnos</td><td class="p-4">      </td><td class="p-4 text-red-600">       </td></tr>
                                         <tr class="border-b bg-red-50"><td>Incidencias</td><td class="p-4">    </td><td class="p-4 text-red-700 font-black">      ⚠️</td></tr>
                                         <tr class="bg-slate-100"><td colspan="3" class="p-2 text-center text-[10px] uppercase font-black">Rendimiento Académico</td></tr>
                                         <tr class="border-b"><td>    Todo Aprobado </td><td colspan="2" class="p-4 text-emerald-600 text-right">      </td></tr>
@@ -187,8 +185,26 @@
                         <p class="text-slate-700 leading-relaxed font-medium mb-4">
                             Cedió sus apuntes a A. Flamereau, quien fue el nexo con los hermanos Lumière. Además, fue un inventor imparable: creó el <strong>Logautógrafo</strong> (voz a texto), el <strong>Iconoscopio</strong> (precursor del televisor) y el Icocinéfono para dar sonido a las imágenes.
                         </p>
-                        <div class="bg-purple-50 p-4 rounded-xl border border-purple-100 text-sm font-bold text-purple-800 italic">
+                        <div class="bg-purple-50 p-4 rounded-xl border border-purple-100 text-sm font-bold text-purple-800 italic mb-6">
                             "Sus inventos fueron la semilla del cine y la televisión moderna, siempre desde la humildad y la generosidad burgalesa."
+                        </div>
+
+                        <div class="space-y-3">
+                            <a href="https://historia-hispanica.rah.es/biografias/14109-mariano-diez-tobar" 
+                               target="_blank" 
+                               rel="noopener noreferrer" 
+                               class="flex items-center justify-between bg-slate-900 hover:bg-slate-800 text-white px-6 py-4 rounded-2xl font-bold transition-all shadow-lg">
+                                <span class="text-sm uppercase tracking-tight">Real Academia de la Historia</span>
+                                <span class="text-[9px] bg-slate-700 px-2 py-1 rounded border border-slate-600">ACCESO WEB</span>
+                            </a>
+
+                            <a href="https://historia.nationalgeographic.com.es/a/mariano-diez-tobar-inventor-olvidado-cine_17162" 
+                               target="_blank" 
+                               rel="noopener noreferrer" 
+                               class="flex items-center justify-between bg-[#ffcf00] hover:bg-[#ffdd44] text-black px-6 py-4 rounded-2xl font-bold transition-all shadow-lg">
+                                <span class="text-sm uppercase tracking-tight">National Geographic</span>
+                                <span class="text-[9px] bg-black text-white px-2 py-1 rounded">ACCESO WEB</span>
+                            </a>
                         </div>
                     </div>
                     <div class="bg-slate-900 p-8 rounded-3xl text-center space-y-6">
@@ -342,38 +358,24 @@
     </div>
 
     <script>
-        /**
-         * Lógica del Reloj en Tiempo Real
-         */
         function actualizarReloj() {
             const elHora = document.getElementById('txt-hora');
             const ahora = new Date();
-            
-            // Formateo profesional con ceros a la izquierda
             const h = String(ahora.getHours()).padStart(2, '0');
             const m = String(ahora.getMinutes()).padStart(2, '0');
             const s = String(ahora.getSeconds()).padStart(2, '0');
-            
             elHora.textContent = `${h}:${m}:${s}`;
         }
-        
-        // Iniciar reloj inmediatamente y cada segundo
         actualizarReloj();
         setInterval(actualizarReloj, 1000);
 
-        /**
-         * Lógica de Navegación entre Pestañas
-         */
         function showTab(tabId) {
             const tabs = document.querySelectorAll('.tab-content');
             tabs.forEach(tab => tab.classList.remove('active'));
-
             const buttons = document.querySelectorAll('.nav-btn');
             buttons.forEach(btn => btn.classList.remove('bg-blue-600', 'bg-emerald-700', 'bg-purple-800'));
-
             const currentTab = document.getElementById(tabId);
             if (currentTab) currentTab.classList.add('active');
-
             const currentBtn = document.getElementById('btn-' + tabId);
             if (currentBtn) {
                 if(tabId === 'debate') currentBtn.classList.add('bg-emerald-700');
@@ -383,46 +385,38 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        /**
-         * Lógica del Simulador de Proyector
-         */
         let isPlaying = false, interval, frame = 0;
         const screen = document.getElementById('projector-screen');
         const range = document.getElementById('fps-range');
         const fpsVal = document.getElementById('fps-value');
         const btnProj = document.getElementById('proj-btn');
 
-        if(range) {
-            range.addEventListener('input', () => { 
-                fpsVal.innerText = range.value + " FPS"; 
-                if(isPlaying) { stopProj(); startProj(); } 
-            });
+        function toggleProjector() {
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+                btnProj.textContent = "Detener Proyector";
+                btnProj.classList.replace('bg-purple-600', 'bg-red-600');
+                startInterval();
+            } else {
+                btnProj.textContent = "Simular Intermitencia";
+                btnProj.classList.replace('bg-red-600', 'bg-purple-600');
+                clearInterval(interval);
+                screen.style.opacity = "1";
+            }
         }
 
-        function startProj() { 
-            const speed = 1000 / parseInt(range.value);
-            interval = setInterval(() => { 
-                frame++; 
-                screen.innerText = (frame % 2 === 0) ? "🦅" : "🎞️"; 
-                screen.classList.toggle('projector-glow'); 
-            }, speed); 
+        function startInterval() {
+            clearInterval(interval);
+            interval = setInterval(() => {
+                screen.style.opacity = (frame % 2 === 0) ? "0.1" : "1";
+                frame++;
+            }, 1000 / range.value);
         }
 
-        function stopProj() { clearInterval(interval); }
-
-        function toggleProjector() { 
-            isPlaying = !isPlaying; 
-            if(isPlaying) { 
-                startProj(); 
-                btnProj.innerText = "Detener"; 
-                btnProj.classList.replace('bg-purple-600', 'bg-red-600'); 
-            } else { 
-                stopProj(); 
-                screen.innerText = "📽️"; 
-                btnProj.innerText = "Simular Intermitencia"; 
-                btnProj.classList.replace('bg-red-600', 'bg-purple-600'); 
-            } 
-        }
+        range.addEventListener('input', () => {
+            fpsVal.textContent = range.value + " FPS";
+            if (isPlaying) startInterval();
+        });
     </script>
 </body>
 </html>
